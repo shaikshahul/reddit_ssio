@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'reddit.wsgi.application'
 import dj_database_url
 DATABASES = { 'default': dj_database_url.config( default=dj_database_url.config('DATABASE_URL') ) }
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -89,7 +89,7 @@ DATABASES = {
 
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
