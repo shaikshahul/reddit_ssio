@@ -1,0 +1,301 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Evault Login</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> -->
+    <!-- Custom CSS -->
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+</head>
+<body>
+<div class="centered">
+    <div class="login-card">
+        <h1 class="text-center"><i class="fa fa-lock"></i> Evault</h1>
+        {% comment %} <h5 class="text-center">Create Account One Step Ahead</h5> {% endcomment %}
+
+        <form method="post" action="" class="signup_form" >
+               
+        {% csrf_token %}
+        <div class="user_details show">
+                <h4 class="text-center">Enter Your Company Details</h4>       
+                {% for field in sign_up_form %}
+                    <div class="form-group col-md-6 margin-bottom-0px">
+                        <label>{{ field.label}}</label>
+                        {{ field }}
+                        <!--<p>{{ field.errors.as_text }}</p> -->
+                    </div>
+                {% endfor %}         
+                {% for field in organisation_form %}
+                    
+                        <div class="form-group col-md-6 margin-bottom-0px">
+                                <label>{{ field.label}}</label>
+                                {{ field }}
+                                <!--<p>{{ field.errors.as_text }}</p> -->
+                        </div>
+                   
+                {% endfor %}
+                         
+                <div class="form-group col-md-6 btn-margin text-right top-margin">
+                    <button type="submit" class="btn btn-primary " id="nextbutton" onclick="firstnextclick()"><b>Next</b> 
+                            <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+        </div>
+        <div class="address_details hide">
+                <h4 class="text-center">Enter Your Billing/Shipping Address Details</h4> 
+                {% for field in address_form %}
+                    <div class="form-group col-md-6 margin-bottom-0px">
+                        <label>{{ field.label}}</label>
+                        {{ field }}
+                        <!--<p>{{ field.errors.as_text }}</p> -->
+                    </div>
+                {% endfor %}  
+                    <div class="col-md-6 text-right">
+                            
+                    </div>
+                    <div class="col-md-6 btn-margin text-right">
+                            <button type="button" class="btn btn-warning btn-width" id="backbutton"> 
+                                    <i class="fa fa-chevron-left"></i> <b>Back</b> </button>
+                            <button type="submit" class="btn btn-primary " id="auther_nextbutton"><b>Next</b> 
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                    </div>
+        </div>
+        </form>
+        <form action="">
+        <div class="autherization hide">
+                <div class="form-group col-md-12 auther-margin-top">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 text-center">
+                            <a class="btn btn-warning auther-btn"  href="{% url "social:begin" "gmail-admin" %}">
+                                    <h3 class="auther-h3">Authorization</h3> 
+                            </a>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    
+                  
+                       
+                </div>
+
+        </div>
+    </form>
+
+    </div>
+</div>
+<!-- jQuery -->
+<!-- <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+</script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAJtzoN16lNpH0LgySLOhHlOzTY6OB720&libraries=places&callback=initAutocomplete"
+async defer></script>
+
+
+
+
+
+<script>
+
+    /*$('#nextbutton').on('click',function(e){
+        e.preventDefault()
+        $('.user_details').removeClass('show').addClass('hide')
+        $('.address_details').addClass('show').removeClass('hide')
+    })*/
+
+    $('#backbutton').on('click',function(e){
+        e.preventDefault()
+        $('.address_details').removeClass('show').addClass('hide')
+        $('.user_details').addClass('show').removeClass('hide')
+        $('#nextbutton').prop("disabled", false);
+    })
+
+        //enable upper step button 
+        function enable() {
+            var nodes = document.getElementById("disable").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = false;
+            }
+        }
+        //disable upper steps buttons
+        function disable() {
+            var nodes = document.getElementById("disable").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }
+        }
+    var next1clk = 0;
+
+        //next button click js 
+        function firstnextclick() {
+            debugger
+            if (next1clk === 0) {
+                debugger
+    
+                $('.signup_form').bootstrapValidator({
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        first_name: {
+    
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please enter your first name'
+                                }
+                            }
+                        },
+                        last_name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter your last name'
+                            }
+                            }
+                        },
+                        email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter your valid email address'
+                            }
+                        }
+                        },
+                        name: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please enter your company name'
+                                }
+                            }
+                            },
+                        domain: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please enter your valid domain'
+                                }
+                            }
+                            },
+                    },
+                    onSuccess: function() {
+    
+                        //enable();
+                        next1clk = 1;
+                       $('.user_details').removeClass('show').addClass('hide')
+                      $('.address_details').addClass('show').removeClass('hide')
+                        $('.signup_form').submit(function(ev) {
+                            ev.preventDefault();
+                        });
+                       // disable();
+                    }
+                });
+            } else {
+
+            }
+            if(next1clk == 1){
+                $('.user_details').removeClass('show').addClass('hide')
+                $('.address_details').addClass('show').removeClass('hide')
+    
+            }
+
+        }
+    
+
+</script>
+<script>
+    
+    var placeSearch, autocomplete;
+      var componentForm = {
+        locality: 'long_name',
+        administrative_area_level_1: 'long_name',
+        country: 'long_name',
+      };
+
+      function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('id_city')),
+            {types: ['geocode']});
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        var place = autocomplete.getPlace();
+        set_address = ['id_city','id_state','id_country']
+        required_address = []
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            required_address.push(val)
+            
+          }
+        }
+        for(i = 0; i < set_address.length; i++){
+            document.getElementById(set_address[i]).value = '';
+            document.getElementById(set_address[i]).value = required_address[i];
+          }
+      }
+
+
+      $('body').on('click', '#auther_nextbutton', function (e) {
+        e.preventDefault()
+        debugger
+        $.post('{% url "signup" %}', $('.signup_form').serialize(),
+                function (data, status, xhr) {
+                    debugger
+                    if (data.response == 'success') {
+                        $('.address_details').removeClass('show').addClass('hide')
+                        $('.user_details').removeClass('show').addClass('hide')
+                        $('.autherization').removeClass('hide').addClass('show')
+                        $('.centered').css({'width':'40%','height':'300px'})
+                    }else{
+                        alert('We Regret, there is an issue!! Try again.')
+                    }
+            
+                }
+        );
+    })
+      
+</script>
+
+</body>
+{% comment %}
+{% for field in organisation_form %}
+   <div class="form-group margin-bottom-0px">
+       <label>{{ field.label }}</label>
+       {{ field }}
+       <p>{{ field.errors.as_text }}</p>
+   </div>
+{% endfor %} 
+{% endcomment %}
+{% comment %} 
+<div class="form-group margin-bottom-0px">
+    <label>{{ field.label }}</label>
+    {{ field }}
+    <p>{{ field.errors.as_text }}</p>
+</div>
+{% endcomment %}
+
+</html>

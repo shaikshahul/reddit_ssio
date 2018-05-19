@@ -1,0 +1,188 @@
+body {
+    background-image: url('/static/images/sunset.jpg');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*-webkit-filter: blur(13px);*/
+    /*-moz-filter: blur(13px);*/
+    /*-o-filter: blur(13px);*/
+    /*-ms-filter: blur(13px);*/
+    /*filter: blur(13px);*/
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    background: #0e0e0e;
+    border-radius: 3px;
+    opacity: .7;
+    box-shadow: 0 0 11px black;
+    color: white;
+    padding: 10px;
+    /* padding-left: 40px; */
+    /* padding-right: 40px; */
+    /*-webkit-filter: blur(13px);*/
+    /*-moz-filter: blur(13px);*/
+    /*-o-filter: blur(13px);*/
+    /*-ms-filter: blur(13px);*/
+    /*filter: blur(13px);*/
+}
+
+.blur {
+    background: url('https://images.unsplash.com/photo-1486723312829-f32b4a25211b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    filter: blur(13px);
+    position: absolute;
+    height: 300px;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+}
+
+.google-plus-button {
+    width: 100%;
+    background: #d74c2e;
+    border: none;
+    box-shadow: 0 0 20px black;
+    color: white;
+    font-size: 18pt;
+    padding: 0px;
+    padding-left: 14px;
+    text-align: left;
+
+    height: 55px;
+}
+
+.google-plus-button > div {
+    display: inline;
+}
+
+.fa-google-plus {
+    vertical-align: middle;
+    padding: 15px;
+    width: 20%;
+    box-shadow: 2px 0px 0px 0px #eddcc6
+}
+
+.google-plus-button:hover {
+    box-shadow: 0 0 13px 15px black;
+    color: white;
+}
+.office-365-button:hover {
+    box-shadow: 0 0 13px 15px black;
+    color: white;
+}
+.google-login-text {
+    text-align: right;
+    font-size: 17px;
+    padding-left: 25%;
+
+}
+
+.office-365-login-text {
+    text-align: right;
+    font-size: 17px;
+    padding-left: 10%;
+
+}
+
+.fa-windows {
+    vertical-align: middle;
+    padding: 15px;
+    width: 20%;
+    box-shadow: 2px 0px 0px 0px #eddcc6;
+}
+
+.office-365-button > div {
+    display: inline;
+}
+
+.office-365-button {
+    width: 100%;
+    background: #eb3d01;
+    border: none;
+    box-shadow: 0 0 20px black;
+    color: white;
+    font-size: 18pt;
+    padding: 0px;
+    padding-left: 14px;
+    text-align: left;
+
+    height: 55px;
+
+}
+
+.margin-bottom-0px {
+    margin-bottom: 0px;
+    height: 80px;
+}
+.btn-margin{
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.fa-lock {
+    padding-right: 10px;
+}
+.form-group{
+    margin-bottom: 8px;
+}
+.form-group>input{
+    border-radius: 0px;
+    border: none;
+}
+.btn{
+    border-radius: 4px;
+    border: none;
+}
+.btn-info{
+    width: 100%;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+.btn-width{
+    width:70px;
+    margin-left: 10px;
+}
+
+.top-margin{
+    margin-top: 26px;
+}
+.auther-btn{
+    height: 70px;
+    width: 200px !important;
+}
+.auther-h3{
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+.auther-margin-top{
+    margin-top: 40px !important;
+}
+.input-error{
+    background-color: #e68a8a
+}
+.label-error{
+    color:#da9a9a;
+}
+.glyphicon-remove,.glyphicon-ok{
+    padding-right: 20px;
+}
+.help-block{
+    font-size: 14px !important;
+}
